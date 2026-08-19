@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Maa Pateshwari University - BALLB 5 Year Syllabus</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+            background: #f4f7fc;
+            color: #1e293b;
+            min-height: 100vh;
+        }
+
+        /* ── header ── */
+        .header {
+            background: linear-gradient(135deg, #0b2b4a, #1a4b6d);
+            color: #fff;
+            padding: 1.8rem 2rem 1.2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header .top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+        .header h1 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .header h1 small {
+            font-weight: 300;
+            font-size: 1rem;
+            opacity: 0.8;
+            display: block;
+            margin-top: 2px;
+        }
+        .header .badge {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .header .badge span {
+            font-weight: 600;
+        }
+
+        /* ── breadcrumb ── */
+        .breadcrumb {
+            background: #fff;
+            padding: 0.7rem 2rem;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 0.9rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.4rem 0.8rem;
+            color: #475569;
+        }
+        .breadcrumb .sep {
+            color: #94a3b8;
+        }
+        .breadcrumb .crumb-link {
+            cursor: pointer;
+            color: #1a4b6d;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .breadcrumb .crumb-link:hover {
+            color: #0b2b4a;
+            text-decoration: underline;
+        }
+        .breadcrumb .current {
+            font-weight: 600;
+            color: #0b2b4a;
+        }
+
+        /* ── main container ── */
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 1.8rem 2rem 4rem;
+        }
+
+        /* ── semester grid (home) ── */
+        .semester-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.4rem;
+        }
+        .semester-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 1.6rem 1.2rem 1.2rem;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e9edf2;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-align: center;
+            position: relative;
+        }
+        .semester-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border-color: #b6c9db;
+        }
+        .semester-card .num {
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: #0b2b4a;
+            line-height: 1;
+        }
+        .semester-card .label {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-top: 0.2rem;
+        }
+        .semester-card .paper-count {
+            margin-top: 0.6rem;
+            font-size: 0.75rem;
+            color: #94a3b8;
+            background: #f1f5f9;
+            display: inline-block;
+            padding: 0.15rem 1rem;
+            border-radius: 30px;
+        }
+        .semester-card .arrow {
+            position: absolute;
+            bottom: 0.6rem;
+            right: 0.8rem;
+            font-size: 1.2rem;
+            opacity: 0.3;
+            transition: opacity 0.2s;
+        }
+        .semester-card:hover .arrow {
+            opacity: 0.8;
+        }
+
+        /* ── papers view (inside semester) ── */
+        .view-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #0b2b4a;
+            margin-bottom: 0.3rem;
+        }
+        .view-sub {
+            color: #64748b;
+            margin-bottom: 1.8rem;
+            font-size: 0.95rem;
+        }
+        .paper-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .paper-item {
+            background: #fff;
+            border-radius: 14px;
+            padding: 1rem 1.4rem;
+            box-shadow: 0 1px 6px rgba(0, 0, 0, 0.04);
+            border: 1px solid #e9edf2;
+            transition: all 0.2s;
+        }
+        .paper-item:hover {
+            border-color: #cbd5e1;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        .paper-item .code {
+            font-weight: 600;
+            color: #1a4b6d;
+            font-size: 0.85rem;
+            background: #eef4fa;
+            padding: 0.1rem 0.8rem;
+            border-radius: 30px;
+            display: inline-block;
+            margin-bottom: 0.2rem;
+        }
+        .paper-item .pname {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #0b2b4a;
+        }
+        .paper-item .units-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.6rem;
+        }
+        .unit-btn {
+            background: #f1f5f9;
+            border: none;
+            padding: 0.25rem 1rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #1e293b;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+        }
+        .unit-btn:hover {
+            background: #0b2b4a;
+            color: #fff;
+            border-color: #0b2b4a;
+        }
+
+        /* ── back button ── */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: transparent;
+            border: none;
+            color: #1a4b6d;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            padding: 0.3rem 0;
+            transition: color 0.2s;
+            margin-bottom: 0.6rem;
+        }
+        .back-btn:hover {
+            color: #0b2b4a;
+        }
+        .back-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* ── unit detail view (fallback) ── */
+        .unit-detail {
+            background: #fff;
+            border-radius: 18px;
+            padding: 2rem 2.2rem;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e9edf2;
+            margin-top: 1.5rem;
+            animation: fadeUp 0.3s ease;
+        }
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .unit-detail .ud-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 1rem;
+            border-bottom: 2px solid #eef2f6;
+            padding-bottom: 1rem;
+            margin-bottom: 1.2rem;
+        }
+        .unit-detail .ud-header .ud-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0b2b4a;
+        }
+        .unit-detail .ud-body {
+            font-size: 0.98rem;
+            line-height: 1.7;
+            color: #1e293b;
+        }
+        .unit-detail .ud-body .book-list {
+            background: #f8fafc;
+            padding: 0.8rem 1.4rem;
+            border-radius: 12px;
+            border-left: 4px solid #1a4b6d;
+            margin: 1rem 0 0.4rem;
+        }
+
+        @media (max-width: 700px) {
+            .header h1 {
+                font-size: 1.2rem;
+            }
+            .header .badge {
+                font-size: 0.7rem;
+                padding: 0.2rem 0.8rem;
+            }
+            .container {
+                padding: 1rem 1rem 3rem;
+            }
+            .semester-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 0.8rem;
+            }
+            .semester-card {
+                padding: 1rem 0.6rem;
+            }
+            .semester-card .num {
+                font-size: 2rem;
+            }
+            .paper-item {
+                padding: 0.8rem 1rem;
+            }
+            .unit-detail {
+                padding: 1.2rem 1rem;
+            }
+            .breadcrumb {
+                padding: 0.4rem 1rem;
+                font-size: 0.75rem;
+            }
+            .view-title {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="top">
+            <h1>
+                📘 Maa Pateshwari University
+                <small>B.A. LL.B. (Integrated) 5 Year Course · Syllabus 2025</small>
+            </h1>
+            <div class="badge">
+                <span>10</span> Semesters · <span>60+</span> Papers
+            </div>
+        </div>
+    </header>
+
+    <div class="breadcrumb" id="breadcrumb">
+        <span class="crumb-link" data-view="home">🏠 Home</span>
+        <span class="sep">›</span>
+        <span class="current" id="bc-current">All Semesters</span>
+    </div>
+
+    <div class="container" id="app"></div>
+
+    <script>
+        // ════════════════════════════════════════════════════════════════
+        //  📌 1. यहाँ अपनी कस्टम HTML फाइलें लिंक करें (Manual Map)
+        //  Format: 'semesterId_paperCode_unitKey': 'FileName.html'
+        // ════════════════════════════════════════════════════════════════
+        const CUSTOM_PAGE_MAP = {
+            // Semester 3 — Political Science-III (LB-301)
+            '3_LB-301_I': 'Semester 3rd Political Science Unit 1.html',
+            '3_LB-301_II': 'Semester 3rd Political Science Unit 2.html',
+            '3_LB-301_III': 'Semester 3rd Political Science Unit 3.html',
+            '3_LB-301_IV': 'Semester 3rd Political Science Unit 4.html',
+
+            // ➕ अपनी अन्य फाइलें यहाँ जोड़ें (बस ऊपर वाले फॉर्मेट में)
+            // '4_LB-401_I': 'jurisprudence_unit1.html',
+            // '5_LB-501_II': 'property_unit2.html',
+        };
+        // ════════════════════════════════════════════════════════════════
+
+        // ════════════════════════════════════════════════════
+        //  📚 2. पूरा सिलेबस (10 सेमेस्टर)
+        // ════════════════════════════════════════════════════
+
+        const DATA = {
+            semesters: [{
+                id: 1,
+                label: 'First Year · I Semester',
+                papers: [
+                    { code: 'LB-101', name: 'Political Science-I', units: { 'I': {}, 'II': {}, 'III': {},
+                        'IV': {} } },
+                    { code: 'LB-102', name: 'Economics I', units: { 'I': {}, 'II': {}, 'III': {}, 'IV': {} } },
+                    { code: 'LB-103', name: 'History I', units: { 'I': {}, 'II': {}, 'III': {}, 'IV': {} } },
+                    { code: 'LB-104', name: 'English-I', units: { 'I': {}, 'II': {}, 'III': {}, 'IV': {} } },
+                    { code: 'LB-105', name: 'Sociology-1', units: { 'I': {}, 'II': {}, 'III': {}, 'IV': {} } },
+                    { code: 'LB-106', name: 'Law of Contract I', units: { 'I': {}, 'II': {}, 'III': {}, 'IV': {} } },
+                    { code: 'LB-107', name: 'Soft Skill (Yoga/NCC)', units: { 'I': {} } }
+                ]
+            }, {
+                id: 2,
+                label: 'First Year · II Semester',
+                papers: [
+                    { code: 'LB-201', name: 'Political Science - II', units: { 'I': {}, 'II': {}, 'III': {},
+                        'IV': {} } },
+                    { code: 'LB-202', name: 'Economics-II', units: { 'I': {}, 'II': {}, 'III': {}, 'IV': {} } },
+                    { code: 'LB-203', name: 'History-II (Legal History)', units: { 'I': {}, 'II': {}, 'III': {},
+                        'IV': {} } },
+                    { code: 'LB-204', name: 'English-II', units: { 'I': {}, 'II': {}, 'III': {}, 'IV': {} } },
+                    { code: 'LB-205', name: 'Sociology- II', units: { 'I': {}, 'II': {}, 'III': {}, 'IV': {} } },
+                    { code: 'LB-206', name: 'Law of Contract II & Specific Relief', units: { 'I': {}, 'II': {},
+                        'III': {}, 'IV': {} } },
+                    { code: 'LB-207', name: 'Computer Fundamentals', units: { 'I': {}, 'II': {}, 'III': {},
+                        'IV': {} } }
+                ]
+            }, {
+                id: 3,
+                label: 'Second Year · III Semester',
+                papers: [
+                    { code: 'LB-301', name: 'Political Science-III', units: { 'I': {}, 'II': {}, 'III': {},
+                        'IV': {} } },
+                    { code: 'LB-302', name: 'Constitutional Law of India- I', units: { 'I': {}, 'II': {}, 'III': {},
+                        'IV': {} } },
+                    { code: 'LB-303', name: 'Family Law- I (Hindu & Muslim)', units: { 'I': {}, 'II': {}, 'III': {},
+                        'IV': {} } },
+                    { code: 'LB-304', name: 'Criminal Law- I (BNS)', units: { 'I': {}, 'II': {}, 'III': {},
+                        'IV': {} } },
+                    { code: 'LB-305', name: 'Sociology- III', units: { 'I': {}, 'II': {}, 'III': {}, 'IV': {} } },
+                    { code: 'LB-306', name: 'Psychology I', units: { 'I': {}, 'II': {}, 'III': {}, 'IV': {} } },
+                    { code: 'LB-307', name: 'Language (German/French etc)', units: { 'I': {}, 'II': {}, 'III': {},
+                        'IV': {} } }
+                ]
+            }, {
+                id: 4,
+                label: 'Second Year · IV Semester',
+                papers: [
+                    { code: 'LB-401', name: 'Jurisprudence', units: { 'I': {}, 'II': {}, 'III': {}, 'IV': {} } },
+                    { code: 'LB-402', name: 'Constitutional Law of India- II', units: { 'I': {}, 'II': {}, 'III': {},
+                        'IV': {} } },
+                    { code: 'LB-403', name: 'Family Law- II (Hindu & Muslim)', units: { 'I': {}, 'II': {}, 'III': {},
+                        'IV': {} } },
+                    { code: 'LB-404', name: 'Criminal Law- II (BNS)', units: { 'I': {}, 'II': {}, 'III': {},
+                        'IV': {} } },
+                    { code: 'LB-405', name: 'Law of Torts', units: { 'I': {}, 'II': {}, 'III': {}, 'IV': {} } },
+                    { code: 'LB-406', name: 'Psychology -II', units: { 'I': {}, 'II': {}, 'III': {}, 'IV': {} } }
+                ]
+            }, {
+                id: 5,
+                label: 'Third Year · V Semester',
+                papers: [
+                    { code: 'LB-501', name: 'Property Law', units: { 'I': {}, 'II': {}, 'III': {}, 'IV': {} } },
+                    { code: 'LB-502', name: 'Public International Law', units: { 'I': {}, 'II': {}, 'III': {},
+                        'IV': {} } },
+                    { code: 'LB-503', name: 'Labour Law- I', units: { 'I': {}, 'II': {}, 'III': {}, 'IV': {} } },
+                    { code: 'LB-504', name: 'CPC & Law of Limitation I', units: { 'I': {}, 'II': {}, 'III': {},
+                        'IV': {} } },
+                    { code: 'LB-505', name: 'BNSS- I', units: { 'I': {}, 'II': {}, 'III': {}, 'IV': {} } },
+                    { code: 'LB-506', name: 'Equity, Trust, Specific Relief Act', units: { 'I': {}, 'II': {},
+                        'III': {}, 'IV': {} } }
+                ]
+            }, {
+                id: 6,
+                label: 'Third Year · VI Semester',
+                papers: [
+                    { code: 'LB-601', name: 'Environmental, Forest & Animal Laws', units: { 'I': {}, 'II': {},
+                        'III': {}, 'IV': {} } },
+                    { code: 'LB-602', name: 'International Organizations', units: { 'I': {}, 'II': {}, 'III': {},
+                        'IV': {} } },
+                    { code: 'LB-603', name: 'Labour Law- II', units: { 'I': {}, 'II': {}, 'III': {}, 'IV': {} } },
+                    { code: 'LB-604', name: 'CPC & Law of Limitation II', units: { 'I': {}, 'II': {}, 'III': {},
+                        'IV': {} } },
+                    { code: 'LB-605', name: 'BNSS- II', units: { 'I': {}, 'II': {}, 'III': {}, 'IV': {} } },
+                    { code: 'LB-606', name: 'Commercial Transactions', units: { 'I': {}, 'II': {}, 'III': {},
+                        'IV': {} } }
+                ]
+            }, {
+                id: 7,
+                label: 'Fourth Year · VII Semester',
+                papers: [
+                    { code: 'LB-701', name: 'Land Laws and other Local Laws- I', units: { 'I': {}, 'II': {},
+                        'III': {}, 'IV': {} } },
+                    { code: 'LB-702', name: 'Alternative Dispute Resolution', units: { 'I': {}, 'II': {}, 'III': {},
+                        'IV': {} } },
+                    { code: 'LB-703', name: 'Company Law I', units: { 'I': {}, 'II': {}, 'III': {}, 'IV': {} } },
+                    { code: 'LB-704', name: 'Law of Evidence (BSA)', units: { 'I': {}, 'II': {}, 'III': {},
+                        'IV': {} } },
+                    { code: 'LB-705', name: 'Drafting, Pleading and Conveyancing', units: { 'I': {}, 'II': {},
+                        'III': {}, 'IV': {} } },
+                    { code: 'LB-706', name: 'Elective Groups- I', units: { 'I': {}, 'II': {}, 'III': {}, 'IV': {} } }
+                ]
+            }, {
+                id: 8,
+                label: 'Fourth Year · VIII Semester',
+                papers: [
+                    { code: 'LB-801', name: 'Land Laws and other Local Laws- II', units: { 'I': {}, 'II': {},
+                        'III': {}, 'IV': {} } },
+                    { code: 'LB-802', name: 'ADR (Conciliation & Mediation)', units: { 'I': {}, 'II': {}, 'III': {},
+                        'IV': {} } },
+                    { code: 'LB-803', name: 'Company Law- II', units: { 'I': {}, 'II': {}, 'III': {}, 'IV': {} } },
+                    { code: 'LB-804', name: 'Professional Ethics, Bar Bench & Contempt', units: { 'I': {}, 'II': {},
+                        'III': {}, 'IV': {} } },
+                    { code: 'LB-805', name: 'Elective Groups- II', units: { 'I': {}, 'II': {}, 'III': {},
+                        'IV': {} } }
+                ]
+            }, {
+                id: 9,
+                label: 'Fifth Year · IX Semester',
+                papers: [
+                    { code: 'LB-901', name: 'Law of Taxation- I', units: { 'I': {}, 'II': {}, 'III': {}, 'IV': {} } },
+                    { code: 'LB-902', name: 'Cyber Law', units: { 'I': {}, 'II': {}, 'III': {}, 'IV': {} } },
+                    { code: 'LB-903', name: 'Women and Child Law', units: { 'I': {}, 'II': {}, 'III': {},
+                    'IV': {} } },
+                    { code: 'LB-904', name: 'Forensic Medicine', units: { 'I': {}, 'II': {}, 'III': {},
+                    'IV': {} } },
+                    { code: 'LB-905', name: 'Intellectual Property Laws', units: { 'I': {}, 'II': {}, 'III': {},
+                        'IV': {} } }
+                ]
+            }, {
+                id: 10,
+                label: 'Fifth Year · X Semester',
+                papers: [
+                    { code: 'LB-1001', name: 'Law of Taxation-II (GST)', units: { 'I': {}, 'II': {}, 'III': {},
+                        'IV': {} } },
+                    { code: 'LB-1002', name: 'Administrative Law', units: { 'I': {}, 'II': {}, 'III': {},
+                        'IV': {} } },
+                    { code: 'LB-1003', name: 'Interpretation of Statutes', units: { 'I': {}, 'II': {}, 'III': {},
+                        'IV': {} } },
+                    { code: 'LB-1004', name: 'Clinical Legal Education', units: { 'I': {}, 'II': {}, 'III': {},
+                        'IV': {} } },
+                    { code: 'LB-1005', name: 'Moot Court, Trial Observation & Interviewing', units: { 'I': {},
+                        'II': {}, 'III': {}, 'IV': {} } }
+                ]
+            }]
+        };
+
+        // ════════════════════════════════════════════════════
+        //  🚀 RENDER ENGINE
+        // ════════════════════════════════════════════════════
+
+        const app = document.getElementById('app');
+        const bcCurrent = document.getElementById('bc-current');
+        const bcHome = document.querySelector('.crumb-link[data-view="home"]');
+
+        let state = { view: 'home', semesterId: null, paperCode: null, unitKey: null };
+
+        function navigate(view, semesterId, paperCode, unitKey) {
+            state.view = view;
+            state.semesterId = semesterId || null;
+            state.paperCode = paperCode || null;
+            state.unitKey = unitKey || null;
+            render();
+        }
+
+        function getSemester(id) { return DATA.semesters.find(s => s.id === id); }
+        function getPaper(semesterId, code) {
+            const sem = getSemester(semesterId);
+            if (!sem) return null;
+            return sem.papers.find(p => p.code === code) || null;
+        }
+        function getUnit(semesterId, code, key) {
+            const paper = getPaper(semesterId, code);
+            if (!paper) return null;
+            return paper.units[key] || null;
+        }
+
+        // ════════════════════════════════════════════════════
+        //  🔗 OPEN EXTERNAL UNIT (कस्टम मैप चेक करेगा)
+        // ════════════════════════════════════════════════════
+
+        function openExternalUnit(semesterId, paperCode, unitKey) {
+            const key = `${semesterId}_${paperCode}_${unitKey}`;
+            const fileName = CUSTOM_PAGE_MAP[key];
+
+            if (fileName) {
+                // नए टैब में खोलेगा
+                window.open(fileName, '_blank');
+            } else {
+                // अगर मैप में नहीं मिला, तो डिफॉल्ट SPA (उसी पेज पर) खुलेगा
+                navigate('unit', semesterId, paperCode, unitKey);
+            }
+        }
+
+        // ── render functions ──
+
+        function render() {
+            const { view, semesterId, paperCode, unitKey } = state;
+
+            if (view === 'home') {
+                bcCurrent.textContent = 'All Semesters';
+                renderHome();
+                return;
+            }
+
+            if (view === 'semester' && semesterId) {
+                const sem = getSemester(semesterId);
+                bcCurrent.textContent = sem ? sem.label : 'Semester';
+                renderSemester(semesterId);
+                return;
+            }
+
+            if (view === 'unit' && semesterId && paperCode && unitKey) {
+                const sem = getSemester(semesterId);
+                const paper = getPaper(semesterId, paperCode);
+                const unit = getUnit(semesterId, paperCode, unitKey);
+                const label = sem ? sem.label : '';
+                const pname = paper ? paper.name : '';
+                const uname = unit ? `Unit ${unitKey}` : '';
+                bcCurrent.textContent = `${label} › ${pname} › ${uname}`;
+                renderUnit(semesterId, paperCode, unitKey);
+                return;
+            }
+
+            renderHome();
+        }
+
+        function renderHome() {
+            let html = `<div class="semester-grid">`;
+            DATA.semesters.forEach(sem => {
+                html += `
+                    <div class="semester-card" onclick="navigate('semester', ${sem.id})">
+                        <div class="num">${sem.id}</div>
+                        <div class="label">${sem.label}</div>
+                        <div class="paper-count">${sem.papers.length} Papers</div>
+                        <div class="arrow">➜</div>
+                    </div>
+                `;
+            });
+            html += `</div>`;
+            app.innerHTML = html;
+        }
+
+        function renderSemester(id) {
+            const sem = getSemester(id);
+            if (!sem) { renderHome(); return; }
+
+            let html = `
+                <button class="back-btn" onclick="navigate('home')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    Back to Home
+                </button>
+                <div class="view-title">📖 ${sem.label}</div>
+                <div class="view-sub">Click any Unit button. If linked, it opens your custom page.</div>
+                <div class="paper-list">
+            `;
+
+            sem.papers.forEach(paper => {
+                const unitKeys = Object.keys(paper.units);
+                html += `
+                    <div class="paper-item">
+                        <div class="code">${paper.code}</div>
+                        <div class="pname">${paper.name}</div>
+                        <div class="units-row">
+                            ${unitKeys.map(key => `
+                                <button class="unit-btn" onclick="openExternalUnit(${sem.id}, '${paper.code}', '${key}')">
+                                    Unit ${key}
+                                </button>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += `</div>`;
+            app.innerHTML = html;
+        }
+
+        function renderUnit(semId, code, key) {
+            const sem = getSemester(semId);
+            const paper = getPaper(semId, code);
+            const unit = getUnit(semId, code, key);
+
+            if (!sem || !paper || !unit) {
+                navigate('semester', semId);
+                return;
+            }
+
+            const fullTitle = `${paper.code} — ${paper.name} : Unit ${key}`;
+
+            let html = `
+                <button class="back-btn" onclick="navigate('semester', ${sem.id})">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    Back to ${sem.label}
+                </button>
+                <div class="unit-detail">
+                    <div class="ud-header">
+                        <div class="ud-title">${fullTitle}</div>
+                    </div>
+                    <div class="ud-body">
+                        <p><strong>📌 यह डिफॉल्ट कंटेंट है।</strong></p>
+                        <p>अगर आप इस Unit के लिए कस्टम HTML पेज दिखाना चाहते हैं, तो <strong>CUSTOM_PAGE_MAP</strong> में इसकी एंट्री डालें (कोड के ऊपर देखें)।</p>
+                        <p style="margin-top:12px;">📂 Example: <code>'${sem.id}_${code}_${key}': 'your-file.html'</code></p>
+                    </div>
+                </div>
+            `;
+
+            app.innerHTML = html;
+        }
+
+        // ── Event Listeners ──
+        bcHome.addEventListener('click', () => navigate('home'));
+        window.navigate = navigate;
+        window.openExternalUnit = openExternalUnit;
+
+        // ── Initial Render ──
+        render();
+    </script>
+</body>
+</html>
